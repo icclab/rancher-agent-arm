@@ -1,0 +1,23 @@
+#!/bin/bash
+
+ARCH=${ARCH:-"amd64"}
+SUFFIX=""
+[ "${ARCH}" != "amd64" ] && SUFFIX="_${ARCH}"
+
+source $(dirname $0)/version
+
+cd $(dirname $0)/../package
+
+TAG=${TAG:-${VERSION}${SUFFIX}}
+REPO=${REPO:-rancher}
+
+if $(echo ${TAG} | grep -q dirty); then
+    TAG=dev
+fi
+
+cp ../bin/rancher-metadata .
+docker build -t ${REPO}/metadata:${TAG} .
+
+mkdir -p ../dist
+echo ${REPO}/metadata:${TAG} > ../dist/images
+echo Built ${REPO}/metadata:${TAG}

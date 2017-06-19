@@ -1,0 +1,7 @@
+/.dapper
+/bin
+*.swp
+/.trash-cache
+/build
+/dist
+rancher-dns

@@ -1,0 +1,128 @@
+{
+  "default": {
+    "recurse": ["8.8.4.4","8.8.8.8:53"],
+    "authoritative": ["something.else.","rancher.internal"],
+
+    "a": {
+      "app.": {"answer": ["10.1.2.3"]},
+      "mysql.": {"answer": ["172.16.2.3"], "ttl": 60},
+      "web.": {"answer": ["172.16.2.4","172.16.2.5","172.16.2.6"], "ttl": 14},
+
+      "chain4.": {"answer": ["1.2.3.4","2.3.4.5"]},
+
+      "a.rancher.internal.": {"answer": ["1.2.3.4"]},
+      "b.rancher.internal.": {"answer": ["1.2.3.5"]},
+      "c.x.rancher.internal.": {"answer": ["1.2.3.6"]},
+      "c.y.rancher.internal.": {"answer": ["1.2.3.7"]},
+      "d.x.rancher.internal.": {"answer": ["1.2.3.8"]},
+      "d.y.rancher.internal.": {"answer": ["1.2.3.9"]}
+    },
+
+    "cname": {
+      "things.": {"answer": "mysql."},
+      "stuff.": {"answer": "web."},
+      "external.": {"answer": "rancher.com."},
+
+      "simpleloop.": {"answer": "simpleloop."},
+      "loop.": {"answer": "loop2."},
+      "loop2.": {"answer": "loop."},
+
+      "chain.": {"answer": "chain2."},
+      "chain2.": {"answer": "chain3."},
+      "chain3.": {"answer": "chain4."},
+
+      "toolong.": {"answer": "toolong2."},
+      "toolong2.": {"answer": "toolong3."},
+      "toolong3.": {"answer": "toolong4."},
+      "toolong4.": {"answer": "toolong5."},
+      "toolong5.": {"answer": "toolong6."},
+      "toolong6.": {"answer": "toolong7."},
+      "toolong7.": {"answer": "toolong8."},
+      "toolong8.": {"answer": "toolong9."},
+      "toolong9.": {"answer": "toolong10."},
+      "toolong10.": {"answer": "mysql."},
+
+      "nxchain1.": {"answer": "longchain2."},
+      "nxchain2.": {"answer": "longchain3."},
+      "nxchain3.": {"answer": "nonexistentdomain022482.com"},
+
+      "extchain.": {"answer": "extchain2."},
+      "extchain2.": {"answer": "extchain3."},
+      "extchain3.": {"answer": "rancher.com."},
+
+      "extcname.": {"answer": "cdn.rancher.io."},
+
+      "e.x.rancher.internal.": {"answer": "d.x.rancher.internal."},
+      "e.y.rancher.internal.": {"answer": "d.y.rancher.internal."}
+    },
+
+    "ptr": {
+      "2.3.4.5": {"answer": "ptr.rancher.internal."},
+      "5.3.4.2": {"answer": "ptr2.rancher.internal."},
+      "6.2.4.3.in-addr.arpa.": {"answer": "ptr3.rancher.internal."}
+    },
+
+    "txt": {
+      "txtrecord.": {"answer": [
+        "This is some text",
+        "And here is some more text"
+      ]},
+
+      "badtxtrecord.": {"answer": [
+        "111111111 22222222 333333333 444444444 555555555 666666666 777777777 888888888 999999999 000000000 111111111 22222222 333333333 444444444 555555555 666666666 777777777 888888888 999999999 000000000 111111111 22222222 333333333 444444444 555555555 666666666 777777777 888888888 999999999 000000000"
+      ]}
+    }
+  },
+
+  "127.0.0.1": {
+    "recurse": ["8.8.4.4"],
+    "search": ["x.rancher.internal","rancher.internal"],
+
+    "a": {
+      "mysql.": {"answer": ["127.0.0.3"]},
+      "web.": {"answer": ["127.0.0.4","127.0.0.5","127.0.0.6"]}
+    },
+
+    "cname": {
+      "things.": {"answer": "mysql."},
+      "stuff.": {"answer": "web."},
+      "external.": {"answer": "apple.com."},
+
+      "d.x.rancher.internal.": {"answer": "d.y.rancher.internal."},
+      "g.x.rancher.internal.": {"answer": "d.x."},
+
+      "parent.x.rancher.internal.": {"answer": "child.x."},
+      "child.x.rancher.internal.": {"answer": "chain."}
+    }
+  },
+
+  "10.1.2.2": {
+    "recurse": ["8.8.4.4:53","8.8.8.8:53"],
+
+    "a": {
+      "mysql.": {"answer": ["10.1.2.3"]},
+      "web.": {"answer": ["10.1.2.4","10.1.2.5","10.1.2.6"]}
+    },
+
+    "cname": {
+      "things.": {"answer": "mysql."},
+      "stuff.": {"answer": "web."},
+      "external.": {"answer": "microsoft.com."}
+    }
+  },
+
+  "192.168.1.5": {
+    "recurse": ["192.168.1.1"],
+
+    "a": {
+      "mysql.": {"answer": ["192.168.1.3"]},
+      "web.": {"answer": ["192.168.1.4","192.168.1.5","192.168.1.6"]}
+    },
+
+    "cname": {
+      "things.": {"answer": "mysql."},
+      "stuff.": {"answer": "web."},
+      "external.": {"answer": "twitter.com."}
+    }
+  }
+}
